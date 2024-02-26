@@ -1,10 +1,10 @@
-#container {
+#canvas {
     display: flex;
     flex-wrap: wrap;
     border: 1px solid black;
     background: #f4f4f4;
-    width: 576px;
-    height: 576px;
+    width: 666px;
+    height: 666px;
 }
 
 #main {
@@ -13,7 +13,7 @@
     justify-content: center;
 }
 
-.pixel {
+.square {
     border: 1px solid black;
     width: 16px;
     height: 16px;
@@ -24,10 +24,17 @@
 }
 
 button {
-    margin: 0 5px;
+    margin: 5px 5px;
 }
 
 div,
 h1 {
     text-align: center;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
