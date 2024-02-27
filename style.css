@@ -2,9 +2,8 @@
     display: flex;
     flex-wrap: wrap;
     border: 1px solid black;
-    background: #f4f4f4;
-    width: 666px;
-    height: 666px;
+    width: 700px;
+    height: 700px;
 }
 
 #main {
@@ -15,8 +14,6 @@
 
 .square {
     border: 1px solid black;
-    width: 16px;
-    height: 16px;
 }
 
 .transform {
@@ -36,5 +33,4 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }

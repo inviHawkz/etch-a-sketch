@@ -1,21 +1,42 @@
 const canvas = document.querySelector('#canvas');
+let canvasHeight = 700;
+let canvasWidth = 700;
+let squarePerSide = 32;
+let totalSquares = squarePerSide * squarePerSide;
+const generateBtn = document.querySelector('#generate');
+generateBtn.addEventListener('click', generateGrid); 
 
-for ( let i = 0; i < 1369; i++) {
+for ( let i = 0; i < totalSquares; i++) {
     const square = document.createElement('div');
     square.className = 'square';
     canvas.appendChild(square);
 }
+squareSize();
+addEvent();
 
-const pixelList = document.querySelectorAll('.square');
-pixelList.forEach(square => square.addEventListener('mouseover', e => { if (e.ctrlKey) {e.target.classList.add('transform');
-                                                                    } else if (e.altKey) {e.target.classList.remove('transform');}}));
-document.querySelector('button').addEventListener('click', () => pixelList.forEach(square => square.classList.remove('transform')));
+function generateGrid() {
+    inputValue = document.querySelector('input').value
+    document.querySelectorAll('.square').forEach(element => canvas.removeChild(element));
+    squarePerSide = Math.floor(Math.abs(Number(inputValue)));
+    if (squarePerSide > 100) squarePerSide = 100;
+    let totalSquares = squarePerSide * squarePerSide; 
+    for ( let i = 0; i < totalSquares; i++) {
+        const square = document.createElement('div');
+        square.className = 'square';
+        canvas.appendChild(square);
+    }
+    squareSize();
+    addEvent();
+}
 
-let canvasHeight = 666;
-let canvasWidth = 666;
+function squareSize() {
+    let squareHeight = document.querySelectorAll('.square').forEach(elem => elem.style.height = `${canvasHeight/squarePerSide - 2}px`);
+    let squareWidth = document.querySelectorAll('.square').forEach(elem => elem.style.width = `${canvasWidth/squarePerSide - 2}px`);
+}
 
-//canvas height: 666px
-//canvas width: 666px
-//square pixel: 18x18 (16x16 + 1px border each side)
-//square per side: 37 (666/18)
-//total square: 1369 (37*37)
+function addEvent() {
+    const squares = document.querySelectorAll('.square');
+    squares.forEach(square => square.addEventListener('mouseover', e => { if (e.ctrlKey) {e.target.classList.add('transform');
+                                                                        } else if (e.altKey) {e.target.classList.remove('transform');}}));
+    document.querySelector('button').addEventListener('click', () => squares.forEach(square => square.classList.remove('transform')));
+}
