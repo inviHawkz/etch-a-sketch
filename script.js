@@ -40,3 +40,13 @@ function addEvent() {
                                                                         } else if (e.altKey) {e.target.classList.remove('transform');}}));
     document.querySelector('button').addEventListener('click', () => squares.forEach(square => square.classList.remove('transform')));
 }
+//Random color
+let red = Math.floor(Math.random() * 256);
+let green = Math.floor(Math.random() * 256);
+let blue = Math.floor(Math.random() * 256);
+const randomColorBtn = document.querySelector('#random-color');
+randomColorBtn.addEventListener('click', randomColorFunction);
+function randomColorFunction() {
+    const squares = document.querySelectorAll('.square');
+    squares.forEach(square => square.addEventListener('mouseover', e => e.target.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`));
+}
