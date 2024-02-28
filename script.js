@@ -45,11 +45,23 @@ function normalColor() {
 }
 
 function randomColor() {
-    randomNum = () => Math.floor(Math.random() * 256);
+    randomHue = () => Math.floor(Math.random() * 360);
+    randomSatLight = () => Math.floor(Math.random() * 101);
     const squares = document.querySelectorAll('.square');
     squares.forEach(square => square.addEventListener('mouseover', e => {
-        if (e.ctrlKey) e.target.style.backgroundColor = `rgb(${randomNum()}, ${randomNum()}, ${randomNum()})`;
+        if (e.ctrlKey) e.target.style.backgroundColor = `hsl(${randomHue()}, ${randomSatLight()}%, ${randomSatLight()}%)`;
         else if (e.altKey) e.target.style.backgroundColor = 'white';
     }))
     document.querySelector('button').addEventListener('click', () => squares.forEach(square => square.style.backgroundColor = 'white'));
 }
+
+//Darkening effect
+// document.querySelector('#color-darkening').addEventListener('click', darkeningColor);
+// function darkeningColor() {
+//     const squares = document.querySelectorAll('.square');
+//     squares.forEach(square => square.addEventListener('mouseover', e => {
+//         if (e.ctrlKey) e.target.style.backgroundColor = `hsl(, , %)`;
+//         else if (e.altKey) e.target.style.backgroundColor = 'white';
+//     }))
+//     document.querySelector('button').addEventListener('click', () => squares.forEach(square => square.style.backgroundColor = 'white'));
+// }
