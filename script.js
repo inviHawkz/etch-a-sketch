@@ -3,8 +3,9 @@ let canvasHeight = 700;
 let canvasWidth = 700;
 let squarePerSide = 32;
 let totalSquares = squarePerSide * squarePerSide;
-const generateBtn = document.querySelector('#generate');
-generateBtn.addEventListener('click', generateGrid); 
+document.querySelector('#generate').addEventListener('click', generateGrid);
+document.querySelector('#color-random').addEventListener('click', randomColor);
+document.querySelector('#color-normal').addEventListener('click', normalColor); 
 
 for ( let i = 0; i < totalSquares; i++) {
     const square = document.createElement('div');
@@ -12,7 +13,7 @@ for ( let i = 0; i < totalSquares; i++) {
     canvas.appendChild(square);
 }
 squareSize();
-addEvent();
+normalColor();
 
 function generateGrid() {
     inputValue = document.querySelector('input').value
@@ -26,7 +27,7 @@ function generateGrid() {
         canvas.appendChild(square);
     }
     squareSize();
-    addEvent();
+    normalColor();
 }
 
 function squareSize() {
@@ -34,19 +35,21 @@ function squareSize() {
     let squareWidth = document.querySelectorAll('.square').forEach(elem => elem.style.width = `${canvasWidth/squarePerSide - 2}px`);
 }
 
-function addEvent() {
+function normalColor() {
     const squares = document.querySelectorAll('.square');
-    squares.forEach(square => square.addEventListener('mouseover', e => { if (e.ctrlKey) {e.target.classList.add('transform');
-                                                                        } else if (e.altKey) {e.target.classList.remove('transform');}}));
-    document.querySelector('button').addEventListener('click', () => squares.forEach(square => square.classList.remove('transform')));
+    squares.forEach(square => square.addEventListener('mouseover', e => {
+        if (e.ctrlKey) e.target.style.backgroundColor = 'black';
+        else if (e.altKey) e.target.style.backgroundColor = 'white';
+    }));
+    document.querySelector('button').addEventListener('click', () => squares.forEach(square => square.style.backgroundColor = 'white'));
 }
-//Random color
-let red = Math.floor(Math.random() * 256);
-let green = Math.floor(Math.random() * 256);
-let blue = Math.floor(Math.random() * 256);
-const randomColorBtn = document.querySelector('#random-color');
-randomColorBtn.addEventListener('click', randomColorFunction);
-function randomColorFunction() {
+
+function randomColor() {
+    randomNum = () => Math.floor(Math.random() * 256);
     const squares = document.querySelectorAll('.square');
-    squares.forEach(square => square.addEventListener('mouseover', e => e.target.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`));
+    squares.forEach(square => square.addEventListener('mouseover', e => {
+        if (e.ctrlKey) e.target.style.backgroundColor = `rgb(${randomNum()}, ${randomNum()}, ${randomNum()})`;
+        else if (e.altKey) e.target.style.backgroundColor = 'white';
+    }))
+    document.querySelector('button').addEventListener('click', () => squares.forEach(square => square.style.backgroundColor = 'white'));
 }
